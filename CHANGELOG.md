@@ -30,6 +30,10 @@ change things that need a step from you, and its notes say so.
   Notifications on the PC: the phone sends nothing until you unlock, then Home catches
   up with what's still on the phone
   ([#219](https://github.com/thtbee/nectarlink/issues/219)).
+- **Sync copied passwords.** An opt-in switch on the phone and the PC sends what password
+  managers mark private. It's marked private on the other side too, and never goes into
+  history, the Timeline or the offline queue
+  ([#272](https://github.com/thtbee/nectarlink/issues/272)).
 - **Back, Home and Recent apps buttons** in the mirror window's toolbar
   ([#192](https://github.com/thtbee/nectarlink/issues/192)).
 - **Brazilian Portuguese.** The Android and PC apps speak Brazilian Portuguese
@@ -128,6 +132,12 @@ what people reported since 0.1.4.
   you to Elevated's settings ([#110](https://github.com/thtbee/nectarlink/issues/110)).
 - The phone's box for typing on the PC grows to four lines, and you can select and edit
   anywhere in it ([#52](https://github.com/thtbee/nectarlink/issues/52)).
+- A phone connected to the PC's `adb` over Wi-Fi no longer shows as USB, or sends
+  everything through that slower route ([#275](https://github.com/thtbee/nectarlink/issues/275)).
+- A file transfer resumed after a pause could fail with "a file got shorter while sending",
+  or read from the wrong place in the file, when the paused attempt's reader was still going.
+- On Linux with Wayland, the PC remembers which screen you picked to share, so Control PC
+  doesn't ask again each time NectarLink restarts.
 - Voice typing from the phone no longer loses or doubles letters in Notepad when it
   rewrites a phrase ([#52](https://github.com/thtbee/nectarlink/issues/52)).
 - **Type on phone** shows what you've typed instead of only the last key, which looked

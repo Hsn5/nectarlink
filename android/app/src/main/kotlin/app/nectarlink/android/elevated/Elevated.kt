@@ -656,7 +656,7 @@ object Elevated {
                             null
                         }
                         if (text.isNotBlank()) {
-                            onClipboardChanged(text, html)
+                            if (parts.getOrNull(3) == "1") onSensitiveCopied(text) else onClipboardChanged(text, html)
                         }
                     }
                 }
@@ -816,6 +816,7 @@ object Elevated {
 
     /** Told when the shell helper observes a primary clipboard change in the background: `(text, html)`. */
     @Volatile var onClipboardChanged: (String, String?) -> Unit = { _, _ -> }
+    @Volatile var onSensitiveCopied: (String) -> Unit = {}
 
     // ---- Input ----
 
@@ -908,10 +909,10 @@ object Elevated {
      * doesn't pop up "copied" for a copy made on the PC. False when the
      * helper isn't running (the app writes it then).
      */
-    fun setClipboard(text: String, html: String?): Boolean {
+    fun setClipboard(text: String, html: String?, sensitive: Boolean = false): Boolean {
         val writer = input ?: return false
         val b64 = { value: String -> android.util.Base64.encodeToString(value.toByteArray(Charsets.UTF_8), android.util.Base64.NO_WRAP) }
-        return send(writer, "B ${b64(text)} ${html?.let(b64).orEmpty()}")
+        return send(writer, "B ${b64(text)} ${html?.let(b64).orEmpty()} ${if (sensitive) "1" else "0"}")
     }
 
     /**
