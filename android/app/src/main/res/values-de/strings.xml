@@ -218,6 +218,11 @@
     <string name="settings_run_in_background_hint">Hält dieses Gerät für deinen PC erreichbar. Wenn ausgeschaltet, verbindet sich NectarLink nur, solange die App geöffnet ist, und die Benachrichtigung wird ausgeblendet.</string>
     <string name="home_background_off_title">Hintergrundverbindung ist aus</string>
     <string name="home_background_off_text">NectarLink verbindet sich nur, solange die App geöffnet ist. Schalte sie ein, damit dieses Gerät für deinen PC erreichbar bleibt.</string>
+    <string name="home_master_off_title">NectarLink ist ausgeschaltet</string>
+    <string name="home_master_off_text">Im Hintergrund läuft nichts, und deine PCs erreichen dieses Gerät nicht. Schalte es ein, um dich wieder zu verbinden.</string>
+    <string name="settings_master_title">NectarLink an/aus</string>
+    <string name="settings_master_row">NectarLink ausführen</string>
+    <string name="settings_master_hint">Schalte dies aus, um alles zu beenden, was NectarLink tut: die Verbindung zu deinen PCs, die Spiegelung von Benachrichtigungen, Assist und Elevated. Wenn Elevated eingerichtet wurde, werden auch Entwickleroptionen und Debugging ausgeschaltet, damit Banking-Apps wie InstaPay normal starten. Beim Einschalten wird alles wiederhergestellt. Ohne Elevated schaltest du Assist in den Bedienungshilfen wieder ein.</string>
     <string name="battery_open_oem_settings">Akkueinstellungen</string>
     <string name="battery_guide_samsung">Auf Samsung: Öffne „App-Info › Akku › Nicht eingeschränkt“ und stelle unter „Gerätewartung › Akku › Grenzen der Hintergrundnutzung“ sicher, dass NectarLink nie in den Standby versetzt wird.</string>
     <string name="battery_guide_xiaomi">Auf Xiaomi / HyperOS / MIUI: Aktiviere „Autostart“ für NectarLink und wähle unter „App-Info › Energiesparmodus“ die Option „Keine Beschränkungen“.</string>

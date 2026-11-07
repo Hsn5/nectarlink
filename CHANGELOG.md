@@ -8,6 +8,11 @@ change things that need a step from you, and its notes say so.
 
 ### New
 
+- **One switch for all of NectarLink on Android.** Settings has a **Run NectarLink** switch,
+  and there is a Quick Settings tile for it. Off, the phone stops the PC connection,
+  notification mirroring, the connection service, Elevated and Assist, so it costs no
+  battery, and, when Elevated has been set up, also turns off Developer options and
+  debugging so banking apps such as InstaPay open normally. On restores them.
 - **More ways to sync a folder.** A synced folder can now go one way from the PC to the
   phone. Phone to PC can also remove from the PC what you delete on the phone: only
   files it synced and that haven't changed on the PC, and they go to the Recycle Bin

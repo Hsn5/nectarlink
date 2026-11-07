@@ -218,6 +218,11 @@
     <string name="settings_run_in_background_hint">Bu telefonu bilgisayarınızdan ulaşılabilir tutar. Kapalıyken NectarLink yalnızca açıkken bağlanır ve bildirim kaybolur.</string>
     <string name="home_background_off_title">Arka plan bağlantısı kapalı</string>
     <string name="home_background_off_text">NectarLink yalnızca uygulama açıkken bağlanır. Bu telefonu bilgisayarınızdan ulaşılabilir tutmak için açın.</string>
+    <string name="home_master_off_title">NectarLink kapalı</string>
+    <string name="home_master_off_text">Arka planda hiçbir şey çalışmıyor ve bilgisayarlarınız bu telefona ulaşamaz. Yeniden bağlanmak için açın.</string>
+    <string name="settings_master_title">NectarLink aç/kapat</string>
+    <string name="settings_master_row">NectarLink\'i çalıştır</string>
+    <string name="settings_master_hint">NectarLink\'in yaptığı her şeyi durdurmak için kapatın: bilgisayarlarınızla bağlantı, bildirim yansıtma, Assist ve Elevated. Elevated kurulduysa Geliştirici seçenekleri ve hata ayıklama da kapatılır; böylece InstaPay gibi bankacılık uygulamaları normal açılır. Tekrar açınca hepsi geri gelir. Elevated yoksa Assist\'i Erişilebilirlik ayarlarından yeniden açın.</string>
     <string name="battery_open_oem_settings">Pil ayarları</string>
     <string name="battery_guide_samsung">Samsung\'da: Uygulama bilgileri › Pil › Kısıtlanmamış\'ı seçin ve Cihaz bakımı › Pil › Arka plan kullanım sınırları bölümünde NectarLink\'in asla uyku moduna alınmadığından emin olun.</string>
     <string name="battery_guide_xiaomi">Xiaomi / HyperOS / MIUI\'de: NectarLink için Otomatik başlat\'ı açın ve Uygulama bilgileri › Pil tasarrufu bölümünde Kısıtlama yok\'u seçin.</string>

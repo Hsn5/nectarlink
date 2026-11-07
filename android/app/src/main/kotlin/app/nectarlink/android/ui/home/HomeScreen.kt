@@ -240,6 +240,8 @@ fun HomeScreen(
     onDismissHiveInvite: () -> Unit = {},
     backgroundServiceEnabled: Boolean = true,
     onTurnOnBackgroundService: () -> Unit = {},
+    masterEnabled: Boolean = true,
+    onTurnOnMaster: () -> Unit = {},
     onOpenFeaturesGuide: () -> Unit = {},
     onOpenWalkthrough: () -> Unit = {},
     highlightTarget: GuideHighlightTarget? = null,
@@ -570,7 +572,16 @@ fun HomeScreen(
             }
         }
         item(key = "update_card", contentType = "update") { UpdateCard(updater) }
-        if (!backgroundServiceEnabled) {
+        if (!masterEnabled) {
+            item(key = "master_off", contentType = "setup") {
+                SetupCard(
+                    title = stringResource(R.string.home_master_off_title),
+                    text = stringResource(R.string.home_master_off_text),
+                    buttonLabel = stringResource(R.string.action_turn_on),
+                    onAllow = onTurnOnMaster,
+                )
+            }
+        } else if (!backgroundServiceEnabled) {
             item(key = "background_connection_off", contentType = "setup") {
                 SetupCard(
                     title = stringResource(R.string.home_background_off_title),

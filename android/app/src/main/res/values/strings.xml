@@ -220,6 +220,12 @@
     <string name="settings_run_in_background_hint">Keeps this phone reachable from your PC. When off, NectarLink connects only while it\'s open, and the notification goes away.</string>
     <string name="home_background_off_title">Background connection is off</string>
     <string name="home_background_off_text">NectarLink connects only while the app is open. Turn it on to keep this phone reachable from your PC.</string>
+    <string name="home_master_off_title">NectarLink is turned off</string>
+    <string name="home_master_off_text">Nothing runs in the background, and your PCs can\'t reach this phone. Turn it on to connect again.</string>
+    <string name="settings_master_title">NectarLink on/off</string>
+    <string name="settings_master_row">Run NectarLink</string>
+    <string name="settings_master_hint">Turn this off to stop everything NectarLink does: the connection to your PCs, notification mirroring, Assist and Elevated. If Elevated has been set up, Developer options and debugging are turned off too, so banking apps like InstaPay open normally. Turning it on restores them. Without Elevated, turn Assist back on in Accessibility settings.</string>
+    <string name="master_tile_label" translatable="false">NectarLink</string>
     <string name="battery_open_oem_settings">Battery settings</string>
     <string name="battery_guide_samsung">On Samsung: open App info › Battery › select Unrestricted, and in Device care › Battery › Background usage limits make sure NectarLink is never put to sleep.</string>
     <string name="battery_guide_xiaomi">On Xiaomi / HyperOS / MIUI: turn on Autostart for NectarLink, and in App info › Battery saver select No restrictions.</string>

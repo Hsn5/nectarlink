@@ -256,6 +256,18 @@
             </intent-filter>
         </service>
 
+        <!-- Turns all of NectarLink off and on from Quick Settings (MasterSwitch). -->
+        <service
+            android:name=".service.MasterTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_notification"
+            android:label="@string/master_tile_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
         <!-- Mirroring notifications to PCs; the user grants access in Settings. -->
         <service
             android:name=".notifications.NotificationListener"

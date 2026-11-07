@@ -3,6 +3,7 @@ package app.nectarlink.android.ui
 
 import android.content.Context
 import androidx.core.content.edit
+import app.nectarlink.android.service.MasterSwitch
 import app.nectarlink.android.ui.theme.Appearance
 import app.nectarlink.android.ui.theme.Tokens
 import app.nectarlink.android.ui.walkthrough.WalkthroughPersistence
@@ -30,10 +31,18 @@ class Preferences(context: Context) {
     private val _backgroundServiceEnabled = MutableStateFlow(prefs.getBoolean(BACKGROUND_SERVICE_ENABLED, true))
     val backgroundServiceEnabled: StateFlow<Boolean> = _backgroundServiceEnabled.asStateFlow()
 
+    /** The master switch (app.nectarlink.android.service.MasterSwitch): everything NectarLink does, on or off. */
+    private val _masterEnabled = MutableStateFlow(prefs.getBoolean(MasterSwitch.KEY, true))
+    val masterEnabled: StateFlow<Boolean> = _masterEnabled.asStateFlow()
+
     private val preferenceChangeListener =
         android.content.SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             if (key == BACKGROUND_SERVICE_ENABLED) {
                 _backgroundServiceEnabled.value = prefs.getBoolean(BACKGROUND_SERVICE_ENABLED, true)
+            }
+            // Also changed from the Quick Settings tile.
+            if (key == MasterSwitch.KEY) {
+                _masterEnabled.value = prefs.getBoolean(MasterSwitch.KEY, true)
             }
         }
 
@@ -115,6 +124,8 @@ class Preferences(context: Context) {
         _volumeKeysControlPc.value = enabled
         (appContext as app.nectarlink.android.NectarlinkApplication).core.pcMedia.volumeKeys(enabled)
     }
+
+    fun updateMasterEnabled(enabled: Boolean) = MasterSwitch.set(appContext, enabled)
 
     fun updateBackgroundServiceEnabled(enabled: Boolean) {
         prefs.edit { putBoolean(BACKGROUND_SERVICE_ENABLED, enabled) }

@@ -23,6 +23,7 @@ import androidx.core.content.edit
 import app.nectarlink.android.R
 import app.nectarlink.android.elevated.Elevated
 import app.nectarlink.android.mirror.InputService
+import app.nectarlink.android.service.MasterSwitch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -76,7 +77,8 @@ object BankingPause {
     fun setApps(context: Context, apps: Set<String>) {
         prefs(context).edit { putStringSet(APPS, apps.toSet()) }
         // Removing the app that's paused for leaves nothing to stay paused for.
-        if (apps.isEmpty() && isPaused(context)) resume(context)
+        // (Paused by the master switch is not about an app: it ends when that's turned on.)
+        if (apps.isEmpty() && isPaused(context) && MasterSwitch.isOn(context)) resume(context)
     }
 
     /** Whether NectarLink may change these settings (granted when Elevated first starts). */
@@ -103,10 +105,18 @@ object BankingPause {
      * Turns off Developer options, USB and Wireless debugging and NectarLink's
      * accessibility service, saving what was on first. Does nothing if
      * already paused or not allowed.
+     *
+     * [notify] shows the "paused" notification with its Turn back on button; the
+     * master switch passes false: it brings things back itself, when turned on.
      */
     @Synchronized
-    fun pause(context: Context) {
-        if (isPaused(context) || !canChangeSettings(context)) return
+    fun pause(context: Context, notify: Boolean = true) {
+        if (isPaused(context)) {
+            // Already paused for a banking app: the master switch takes over, so its notification goes.
+            if (!notify) context.getSystemService(NotificationManager::class.java)?.cancel(NOTIFICATION_ID)
+            return
+        }
+        if (!canChangeSettings(context)) return
         val resolver = context.contentResolver
         val accessibility = isAccessibilityEnabled(context)
         // Saved before anything changes, so a crash halfway still restores.
@@ -125,7 +135,7 @@ object BankingPause {
             Settings.Global.putInt(resolver, DEVELOPER, 0)
         }.onFailure { Log.w(TAG, "couldn't pause everything", it) }
         Log.i(TAG, "paused for a banking app")
-        showNotification(context)
+        if (notify) showNotification(context)
     }
 
     /** Turns back on exactly what [pause] turned off. */
@@ -164,7 +174,8 @@ object BankingPause {
 
     /** At process start: a pause left over from before (a crash, a reboot) with nothing to wait for ends now. */
     fun restoreIfStranded(context: Context) {
-        if (isPaused(context) && !isReady(context)) resume(context)
+        // Paused by the master switch stays paused, whatever is set up for banking apps.
+        if (isPaused(context) && MasterSwitch.isOn(context) && !isReady(context)) resume(context)
     }
 
     private fun global(context: Context, name: String): Boolean =

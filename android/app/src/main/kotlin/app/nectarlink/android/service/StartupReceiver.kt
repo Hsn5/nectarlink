@@ -27,7 +27,7 @@ class StartupReceiver : BroadcastReceiver() {
             else -> return
         }
         val app = context.applicationContext as NectarlinkApplication
-        if (!Preferences.isBackgroundServiceEnabled(context)) {
+        if (!MasterSwitch.isOn(context) || !Preferences.isBackgroundServiceEnabled(context)) {
             if (updated) app.updater.onUpdated()
             return
         }

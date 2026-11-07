@@ -488,11 +488,14 @@ private fun App(
         }
     }
 
+    // Turned off, the core is stopped (its status goes back to Starting): show the app, with its switch.
+    val masterEnabled by preferences.masterEnabled.collectAsStateWithLifecycle()
+
     val showWalkthrough = manualWalkthroughOpen ||
         (state.status is CoreStatus.Ready && startupWalkthrough.showWalkthrough)
 
     val currentRoute: ScreenRoute = when {
-        state.status is CoreStatus.Starting -> ScreenRoute.Starting
+        state.status is CoreStatus.Starting && masterEnabled -> ScreenRoute.Starting
         state.status is CoreStatus.Failed -> ScreenRoute.Failed(state.status.message)
         showWalkthrough -> ScreenRoute.Walkthrough
         featuresGuideOpen -> ScreenRoute.FeaturesGuide
@@ -914,6 +917,8 @@ private fun App(
                                     },
                                     onDismissHiveInvite = preferences::answerHiveInvite,
                                     backgroundServiceEnabled = backgroundServiceEnabled,
+                                    masterEnabled = masterEnabled,
+                                    onTurnOnMaster = { preferences.updateMasterEnabled(true) },
                                     onTurnOnBackgroundService = {
                                         preferences.updateBackgroundServiceEnabled(true)
                                         core.start()
@@ -958,6 +963,8 @@ private fun App(
                                     onSetSuggestClipboardActions = preferences::updateSuggestClipboardActions,
                                     volumeKeysControlPc = volumeKeysControlPc,
                                     onSetVolumeKeysControlPc = preferences::updateVolumeKeysControlPc,
+                                    masterEnabled = masterEnabled,
+                                    onToggleMaster = preferences::updateMasterEnabled,
                                     backgroundServiceEnabled = backgroundServiceEnabled,
                                     onToggleBackgroundService = { enabled ->
                                         preferences.updateBackgroundServiceEnabled(enabled)

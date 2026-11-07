@@ -12,6 +12,7 @@ import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import androidx.core.app.NotificationManagerCompat
 import app.nectarlink.android.NectarlinkApplication
+import app.nectarlink.android.service.MasterSwitch
 
 /**
  * Hands this phone's notifications to the core, which mirrors them to the
@@ -34,6 +35,11 @@ class NotificationListener : NotificationListenerService() {
 
     override fun onListenerConnected() {
         instance = this
+        // Android binds the listener again after a restart; while NectarLink is off, let go.
+        if (!MasterSwitch.isOn(applicationContext)) {
+            requestUnbind()
+            return
+        }
         if (isPcActive()) applyHostHints(true)
         work {
             val snapshot = runCatching { activeNotifications?.toList().orEmpty() }.getOrDefault(emptyList())
@@ -56,6 +62,7 @@ class NotificationListener : NotificationListenerService() {
     }
 
     override fun onNotificationPosted(sbn: StatusBarNotification, rankingMap: RankingMap?) {
+        if (!MasterSwitch.isOn(applicationContext)) return
         val key = sbn.key
         work {
             val notification = reader.read(sbn, rankingMap, update = key in sent)
@@ -183,6 +190,16 @@ class NotificationListener : NotificationListenerService() {
         private const val OP_SENSITIVE = "android:receive_sensitive_notifications"
 
         fun component(context: Context) = ComponentName(context, NotificationListener::class.java)
+
+        /** NectarLink was turned off: Android stops delivering notifications to it. */
+        fun release() {
+            instance?.requestUnbind()
+        }
+
+        /** NectarLink was turned on again: asks Android to bind the listener, if access was granted. */
+        fun reacquire(context: Context) {
+            if (hasAccess(context)) NotificationListenerService.requestRebind(component(context))
+        }
 
         /** Android's notification access screen, on NectarLink's own switch where possible. */
         fun settingsIntent(context: Context): Intent =

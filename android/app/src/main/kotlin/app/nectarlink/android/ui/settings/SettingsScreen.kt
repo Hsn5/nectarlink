@@ -120,6 +120,8 @@ fun SettingsScreen(
     onSetSuggestClipboardActions: (Boolean) -> Unit = {},
     volumeKeysControlPc: Boolean = true,
     onSetVolumeKeysControlPc: (Boolean) -> Unit = {},
+    masterEnabled: Boolean = true,
+    onToggleMaster: (Boolean) -> Unit = {},
     backgroundServiceEnabled: Boolean = true,
     onToggleBackgroundService: (Boolean) -> Unit = {},
     onSetTimelineRetentionDays: (UInt) -> Unit = {},
@@ -248,6 +250,28 @@ fun SettingsScreen(
                             ),
                         )
                     }
+                }
+            }
+        }
+
+        item(key = "master", contentType = "section") {
+            Section(title = stringResource(R.string.settings_master_title)) {
+                val masterTitle = stringResource(R.string.settings_master_row)
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+                    Column(Modifier.weight(1f).padding(end = 12.dp)) {
+                        Text(masterTitle, style = MaterialTheme.typography.titleSmall)
+                        Text(
+                            stringResource(R.string.settings_master_hint),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Switch(
+                        checked = masterEnabled,
+                        onCheckedChange = onToggleMaster,
+                        colors = app.nectarlink.android.ui.theme.nectarSwitchColors(),
+                        modifier = Modifier.semantics { contentDescription = masterTitle },
+                    )
                 }
             }
         }

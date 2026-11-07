@@ -293,7 +293,7 @@ class ConnectionService : LifecycleService() {
 
         /** Starts the service when allowed by Android's foreground-service rules. */
         fun start(context: Context) {
-            if (!Preferences.isBackgroundServiceEnabled(context)) return
+            if (!MasterSwitch.isOn(context) || !Preferences.isBackgroundServiceEnabled(context)) return
             runCatching {
                 ContextCompat.startForegroundService(context, Intent(context, ConnectionService::class.java))
             }.onFailure {

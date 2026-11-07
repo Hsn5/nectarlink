@@ -397,6 +397,16 @@ class InputService : AccessibilityService() {
             service.main.post { service.handle(input) }
         }
 
+        /**
+         * Turns the service off from here (Android lets a service disable itself), when
+         * NectarLink can't change Android's settings for it. Turning it on again is up to
+         * the user, in Accessibility settings. False if it isn't running.
+         */
+        fun turnOff(): Boolean {
+            val service = instance ?: return false
+            return runCatching { service.disableSelf() }.isSuccess
+        }
+
         /** Whether it's turned on in Settings (it may not be running yet). */
         fun enabled(context: Context): Boolean {
             val enabled = Settings.Secure.getString(context.contentResolver, Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES).orEmpty()

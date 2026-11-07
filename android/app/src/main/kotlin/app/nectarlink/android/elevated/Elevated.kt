@@ -399,6 +399,11 @@ object Elevated {
 
     /** Connects and starts the input helper (when set up; again after it stopped). */
     suspend fun start(): Boolean = withContext(Dispatchers.IO) {
+        // Turned off with the master switch: stays stopped until it's turned on.
+        if (!app.nectarlink.android.service.MasterSwitch.isOn(context)) {
+            held = true
+            return@withContext false
+        }
         held = false
         // Paused for a banking app: debugging stays off until it's over
         // (BankingPause starts Elevated again then).
@@ -739,6 +744,7 @@ object Elevated {
      * a PC connects, so plugging in is enough.
      */
     suspend fun startOverUsb(): Boolean = withContext(Dispatchers.IO) {
+        if (!app.nectarlink.android.service.MasterSwitch.isOn(context)) return@withContext false
         if (held || running || BankingPause.isPaused(context)) return@withContext running
         lock.withLock { running || startOverUsbLocked() }
     }

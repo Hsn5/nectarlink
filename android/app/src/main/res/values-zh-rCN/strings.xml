@@ -212,6 +212,11 @@
     <string name="settings_run_in_background_hint">让此手机可以被电脑访问。关闭时，NectarLink 仅在打开时连接，通知也会消失。</string>
     <string name="home_background_off_title">后台连接已关闭</string>
     <string name="home_background_off_text">NectarLink 仅在应用打开时连接。开启以保持此手机可被电脑访问。</string>
+    <string name="home_master_off_title">NectarLink 已关闭</string>
+    <string name="home_master_off_text">后台不会运行任何内容，你的电脑也无法连接这部手机。开启后即可重新连接。</string>
+    <string name="settings_master_title">NectarLink 开关</string>
+    <string name="settings_master_row">运行 NectarLink</string>
+    <string name="settings_master_hint">关闭后，NectarLink 的一切活动都会停止：与电脑的连接、通知镜像、Assist 和 Elevated。如果已设置 Elevated，还会关闭开发者选项和调试，使 InstaPay 等银行应用能正常打开。重新开启时会恢复原状。未设置 Elevated 时，请在无障碍设置中重新开启 Assist。</string>
     <string name="battery_open_oem_settings">电池设置</string>
     <string name="battery_guide_samsung">三星：打开应用信息 › 电池 › 选择“不受限制”，并在设备维护 › 电池 › 后台使用限制中确保 NectarLink 永不休眠。</string>
     <string name="battery_guide_xiaomi">小米 / HyperOS / MIUI：为 NectarLink 开启自启动，并在应用信息 › 省电策略中选择“无限制”。</string>

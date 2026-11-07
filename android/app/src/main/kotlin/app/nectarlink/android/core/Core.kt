@@ -398,6 +398,8 @@ class Core(context: Context, private val scope: CoroutineScope) : EventListener 
      * two nodes with one identity, which kept taking the PC from each other.
      */
     fun start() {
+        // Turned off with the master switch: nothing starts until it's turned on.
+        if (!app.nectarlink.android.service.MasterSwitch.isOn(context)) return
         scope.launch(Dispatchers.IO) {
             lifecycleMutex.withLock {
                 if (node != null || startJob?.isActive == true) return@withLock

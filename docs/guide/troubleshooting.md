@@ -80,6 +80,8 @@ Many banking apps refuse to run while **Developer options**, USB or Wireless Deb
 
 If an app checks before NectarLink notices it, tap **Add shortcut** next to it and open it from that home screen shortcut: NectarLink pauses first, then opens the app.
 
+To turn everything off yourself instead, use **Settings › Run NectarLink** or the **NectarLink** Quick Settings tile (add it from Android's tile editor). Off, NectarLink closes the connection, stops notification mirroring, Elevated and Assist, and, when Elevated has been set up, turns off Developer options and debugging too. Turning it on again restores exactly what was on. Without Elevated, NectarLink can only switch Assist off: turn it back on in Android's Accessibility settings.
+
 Some banking apps also refuse to run on a phone that was ever rooted (on Samsung phones, a tripped Knox flag). NectarLink can't change that.
 
 ## 5. Troubleshooting USB Auto-Pair and `On USB` Transport

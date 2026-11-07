@@ -11,6 +11,7 @@ import androidx.lifecycle.ProcessLifecycleOwner
 import app.nectarlink.android.banking.BankingPause
 import app.nectarlink.android.core.Core
 import app.nectarlink.android.elevated.Elevated
+import app.nectarlink.android.service.MasterSwitch
 import app.nectarlink.android.ui.Preferences
 import app.nectarlink.android.update.AppUpdater
 import kotlinx.coroutines.CoroutineScope
@@ -67,7 +68,7 @@ class NectarlinkApplication : Application(), DefaultLifecycleObserver {
         getSharedPreferences("appearance", Context.MODE_PRIVATE)
             .registerOnSharedPreferenceChangeListener(prefListener)
 
-        if (Preferences.isBackgroundServiceEnabled(this)) {
+        if (MasterSwitch.isOn(this) && Preferences.isBackgroundServiceEnabled(this)) {
             android.view.Choreographer.getInstance().postFrameCallback {
                 scope.launch { core.start() }
             }
