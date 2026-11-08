@@ -34,16 +34,18 @@ struct Latest
 
 // Pictures by stream, and the views to tell. Views register and leave
 // under the lock, so a picture never wakes a view that's being destroyed.
-std::mutex lock;
-QHash<QString, Latest> latest;
-std::vector<VideoView *> views;
+// Never destroyed: a decoder thread can still be finishing while the app exits, after
+// destructors of globals have run (a crash on quitting with a mirror open).
+std::mutex &lock = *new std::mutex;
+QHash<QString, Latest> &latest = *new QHash<QString, Latest>;
+std::vector<VideoView *> &views = *new std::vector<VideoView *>;
 quint64 nextSerial = 1;
 
 void wakeViews(const QString &stream)
 {
     for (VideoView *view : views) {
         if (view->stream() == stream)
-            QMetaObject::invokeMethod(view, "frameArrived", Qt::QueuedConnection);
+            view->queueFrame();
     }
 }
 
@@ -201,8 +203,17 @@ QRectF VideoView::pictureRect() const
     return QRectF((width() - fitted.width()) / 2, (height() - fitted.height()) / 2, fitted.width(), fitted.height());
 }
 
+void VideoView::queueFrame()
+{
+    // The picture cache already keeps only the newest image. Coalesce UI
+    // notifications too, so a busy UI does not replay old frame callbacks.
+    if (!m_framePending.exchange(true))
+        QMetaObject::invokeMethod(this, "frameArrived", Qt::QueuedConnection);
+}
+
 void VideoView::frameArrived()
 {
+    m_framePending.store(false);
     QSize size;
     {
         std::lock_guard guard(lock);

@@ -15,7 +15,8 @@ change things that need a step from you, and its notes say so.
   debugging so banking apps such as InstaPay open normally. On restores them.
 - **More ways to sync a folder.** A synced folder can now go one way from the PC to the
   phone. Phone to PC can also remove from the PC what you delete on the phone: only
-  files it synced and that haven't changed on the PC, and they go to the Recycle Bin
+  files it synced and that haven't changed on the PC, and they go to the Recycle Bin. Both
+  ways has the same option, so a deletion on either side goes across
   ([#243](https://github.com/thtbee/nectarlink/issues/243)).
 - **Sync on Wi-Fi only.** A switch in Settings › Files & Sync on the PC holds folder sync
   and photo backup back while the phone is away, so they don't use its mobile data
@@ -31,9 +32,16 @@ change things that need a step from you, and its notes say so.
   up with what's still on the phone
   ([#219](https://github.com/thtbee/nectarlink/issues/219)).
 - **Sync copied passwords.** An opt-in switch on the phone and the PC sends what password
-  managers mark private. It's marked private on the other side too, and never goes into
-  history, the Timeline or the offline queue
+  managers mark private. It's marked private on the other side too, leaves that clipboard
+  after a minute, and never goes into history, the Timeline or the offline queue
   ([#272](https://github.com/thtbee/nectarlink/issues/272)).
+- **Mirror quality.** Balanced as before, Sharper for the phone's full resolution, or
+  Smoother for weak Wi-Fi, in Settings › Camera & Audio on the PC. It's for the phone's
+  screen and app windows (those stay at 1920 at most), and over the relay it stays
+  Balanced ([#275](https://github.com/thtbee/nectarlink/issues/275)). App windows also
+  stay closer to live when the PC falls behind
+  ([#284](https://github.com/thtbee/nectarlink/pull/284)). Thanks to
+  [@krakotay](https://github.com/krakotay).
 - **Back, Home and Recent apps buttons** in the mirror window's toolbar
   ([#192](https://github.com/thtbee/nectarlink/issues/192)).
 - **Brazilian Portuguese.** The Android and PC apps speak Brazilian Portuguese
@@ -138,6 +146,22 @@ what people reported since 0.1.4.
   or read from the wrong place in the file, when the paused attempt's reader was still going.
 - On Linux with Wayland, the PC remembers which screen you picked to share, so Control PC
   doesn't ask again each time NectarLink restarts.
+- Nectar Island's progress bar moves while music plays, instead of only when the phone
+  sends an update.
+- On GNOME with Wayland, Nectar Island stays on top if you have the PiP on top extension.
+- Quitting the PC app with a mirror open could crash it on the way out.
+- On GNOME with Wayland, text copied on the phone could be replaced by what was on the
+  PC's clipboard, once NectarLink got focus.
+- On Linux, quitting the PC app (or logging out) with a phone's screen or an app window
+  open could crash it on the way out.
+- Following the system's language, the PC app could open in German (or another language
+  further down Windows' list) when English came first
+  ([#280](https://github.com/thtbee/nectarlink/issues/280)).
+- Phone as speaker together with the phone's sound on the PC (or a mirror with sound) no
+  longer loops into loud distortion on Windows: the PC's sound sent to the phone leaves out
+  NectarLink's own ([#281](https://github.com/thtbee/nectarlink/issues/281)).
+- With two phones connected, **Phone sound on this PC** plays the phone selected on Home,
+  not the first one. Thanks to [@krakotay](https://github.com/krakotay).
 - Voice typing from the phone no longer loses or doubles letters in Notepad when it
   rewrites a phrase ([#52](https://github.com/thtbee/nectarlink/issues/52)).
 - **Type on phone** shows what you've typed instead of only the last key, which looked
