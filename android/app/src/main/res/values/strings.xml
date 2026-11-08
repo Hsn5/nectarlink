@@ -227,6 +227,8 @@
     <string name="settings_master_title">NectarLink on/off</string>
     <string name="settings_master_row">Run NectarLink</string>
     <string name="settings_master_hint">Turn this off to stop everything NectarLink does: the connection to your PCs, notification mirroring, Assist and Elevated. If Elevated has been set up, Developer options and debugging are turned off too, so banking apps like InstaPay open normally. Turning it on restores them. Without Elevated, turn Assist back on in Accessibility settings.</string>
+    <string name="shortcut_master_off">Turn NectarLink off</string>
+    <string name="shortcut_master_on">Turn NectarLink on</string>
     <string name="master_tile_label" translatable="false">NectarLink</string>
     <string name="battery_open_oem_settings">Battery settings</string>
     <string name="battery_guide_samsung">On Samsung: open App info › Battery › select Unrestricted, and in Device care › Battery › Background usage limits make sure NectarLink is never put to sleep.</string>

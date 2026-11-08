@@ -155,6 +155,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="nectarlink" android:host="pair" />
             </intent-filter>
+            <!-- Long-press the app icon: turn NectarLink on or off. -->
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/launcher_shortcuts" />
         </activity>
 
         <!-- Sending text to the PC: shared from other apps, or the clipboard
@@ -370,6 +374,23 @@
             android:noHistory="true"
             android:taskAffinity=""
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Turns NectarLink on or off for routines, Tasker and launcher shortcuts (MasterSwitch).
+             Actions: MASTER_ON, MASTER_OFF, MASTER_TOGGLE. No screen. -->
+        <activity
+            android:name=".service.MasterSwitchActivity"
+            android:exported="true"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="app.nectarlink.android.action.MASTER_ON" />
+                <action android:name="app.nectarlink.android.action.MASTER_OFF" />
+                <action android:name="app.nectarlink.android.action.MASTER_TOGGLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <!-- Exported for the Elevated helper; acts only on a request the user allowed (PcAutoStart). -->
         <activity

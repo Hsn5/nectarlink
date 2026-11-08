@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="master_off"
+        android:enabled="true"
+        android:icon="@drawable/ic_notification"
+        android:shortcutShortLabel="@string/shortcut_master_off">
+        <intent
+            android:action="app.nectarlink.android.action.MASTER_OFF"
+            android:targetClass="app.nectarlink.android.service.MasterSwitchActivity"
+            android:targetPackage="app.nectarlink" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="master_on"
+        android:enabled="true"
+        android:icon="@drawable/ic_notification"
+        android:shortcutShortLabel="@string/shortcut_master_on">
+        <intent
+            android:action="app.nectarlink.android.action.MASTER_ON"
+            android:targetClass="app.nectarlink.android.service.MasterSwitchActivity"
+            android:targetPackage="app.nectarlink" />
+    </shortcut>
+</shortcuts>

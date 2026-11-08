@@ -225,6 +225,8 @@
     <string name="settings_master_title">Ligar/desligar o NectarLink</string>
     <string name="settings_master_row">Executar o NectarLink</string>
     <string name="settings_master_hint">Desative para parar tudo o que o NectarLink faz: a conexão com seus PCs, o espelhamento de notificações, o Assist e o Elevated. Se o Elevated foi configurado, as Opções do desenvolvedor e a depuração também são desativadas, para que apps bancários como o InstaPay abram normalmente. Ao ligar de novo, tudo é restaurado. Sem o Elevated, reative o Assist nas configurações de Acessibilidade.</string>
+    <string name="shortcut_master_off">Desligar o NectarLink</string>
+    <string name="shortcut_master_on">Ligar o NectarLink</string>
     <string name="battery_open_oem_settings">Configurações de bateria</string>
     <string name="battery_guide_samsung">Em celulares Samsung: abra Informações do app › Bateria › selecione Sem restrições e, em Assistência do aparelho › Bateria › Limites de uso em segundo plano, confira se o NectarLink nunca é suspenso.</string>
     <string name="battery_guide_xiaomi">Em celulares Xiaomi / HyperOS / MIUI: ative a Inicialização automática do NectarLink. Em Informações do app › Economia de bateria, selecione Sem restrições.</string>
